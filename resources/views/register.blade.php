@@ -46,7 +46,7 @@
                         <p class="mb-0">Enter your credentials to create your account</p> --}}
 
                         <div class="form-body my-4">
-                            <form class="row g-3" method="POST" action="">
+                            <form class="row g-3" method="POST" action="{{ route('user-register-post') }}">
                                 @csrf
                                 <div class="col-12">
                                     <label for="inputUsername" class="form-label">User Name</label>
@@ -58,16 +58,7 @@
                                     <input type="number" class="form-control" id="inputPhone" name="phone"
                                         placeholder="Enter Your Phone Number">
                                 </div>
-                                <div class="col-12">
-                                    <label for="inputUserDesignation" class="form-label">User Designation</label>
-                                    <input type="text" class="form-control" name="designation"
-                                        id="inputUserDesignation" placeholder="Enter Your Designation">
-                                </div>
-                                <div class="col-12">
-                                    <label for="inputUserAadhar" class="form-label">User Aadhar Card Number</label>
-                                    <input type="text" class="form-control" name="aadhar" id="inputUserAadhar"
-                                        placeholder="Enter Your Aadhar Card Number">
-                                </div>
+
 
                                 <div class="col-12">
                                     <label for="inputChoosePassword" class="form-label">Password</label>
@@ -105,8 +96,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="text-start">
-                                        <p class="mb-0">Already have an account? <a
-                                                href="{{ route('login') }}">Sign
+                                        <p class="mb-0">Already have an account? <a href="{{ route('login') }}">Sign
                                                 in here</a></p>
                                     </div>
                                 </div>
