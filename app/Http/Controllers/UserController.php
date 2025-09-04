@@ -92,6 +92,8 @@ class UserController extends Controller
 
     public function userDashboard()
     {
-        return view('dashboard');
+        $user = Auth::guard('web')->user();
+        // dd($user);
+        return view('dashboard', compact('user'));
     }
 }
