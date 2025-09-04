@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('', [UserController::class, 'userLogin'])->name('login');
 Route::get('register', [UserController::class, 'userRegister'])->name('register');
 Route::post('register', [UserController::class, 'userRegisterPost'])->name('user-register-post');;
+Route::post('login', [UserController::class, 'userLoginPost'])->name('user-login-post');
+Route::group(
+    ['middleware' => 'auth:web'],
+    function () {
+        Route::get('dashboard', [UserController::class, 'userDashboard'])->name('user-dashboard');
+    }
+);

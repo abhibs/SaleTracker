@@ -49,12 +49,12 @@
                             <p class="mb-0">Enter your credentials to login your account</p> --}}
 
                             <div class="form-body my-5">
-                                <form class="row g-3" method="POST" action="">
+                                <form class="row g-3" method="POST" action="{{ route('user-login-post') }}">
                                     @csrf
                                     <div class="col-12">
                                         <label for="inputUserCode" class="form-label">User Code</label>
                                         <input type="text" name="code" class="form-control" id="inputUserCode"
-                                            placeholder="Enter Your User Code">
+                                            placeholder="Enter Your Code">
                                     </div>
                                     <div class="col-12">
                                         <label for="inputChoosePassword" class="form-label">Password</label>
@@ -83,7 +83,8 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="text-start">
-                                            <p class="mb-0">Don't have an account yet? <a href="{{ route('register') }}">Sign up
+                                            <p class="mb-0">Don't have an account yet? <a
+                                                    href="{{ route('register') }}">Sign up
                                                     here</a>
                                             </p>
                                         </div>

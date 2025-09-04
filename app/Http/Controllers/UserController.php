@@ -15,6 +15,49 @@ class UserController extends Controller
         return view('login');
     }
 
+
+
+    public function userLoginPost(Request $request)
+    {
+        $credentials = $request->only('code', 'password');
+
+        // Retrieve the user by code (assuming 'code' is a unique identifier)
+        $user = \App\Models\User::where('code', $credentials['code'])->first();
+
+        if (!$user) {
+            return back()->with([
+                'message' => 'User not found',
+                'alert-type' => 'error'
+            ]);
+        }
+
+        if ($user->status == 'Pending') {
+            return back()->with([
+                'message' => 'Your Account is Not Approved Yet',
+                'alert-type' => 'error'
+            ]);
+        } elseif ($user->status == 'Rejected') {
+            return back()->with([
+                'message' => 'Your Account is Rejected',
+                'alert-type' => 'error'
+            ]);
+        }
+
+        // Attempt login only if status is "Approved"
+        if (Auth::guard('web')->attempt($credentials)) {
+            return redirect()->route('user-dashboard')->with([
+                'message' => 'User Login Successfully',
+                'alert-type' => 'success'
+            ]);
+        } else {
+            return back()->with([
+                'message' => 'Invalid Credentials',
+                'alert-type' => 'error'
+            ]);
+        }
+    }
+
+
     public function userRegister()
     {
         return view('register');
@@ -45,5 +88,10 @@ class UserController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('login')->with($notification);
+    }
+
+    public function userDashboard()
+    {
+        return view('dashboard');
     }
 }
