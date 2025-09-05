@@ -65,6 +65,8 @@
                                             <a href="{{ route('admin-active', $item->id) }}" class="btn btn-grd btn-grd-primary"
                                                 title="Active"><i class="fa-solid fa-thumbs-up"></i></a>
                                         @endif
+                                        <a href="{{ route('admin-delete', $item->id) }}" class="btn btn-grd btn-grd-primary px-3"
+                                            id="delete">Delete</a>
                                     </td>
 
                                 </tr>

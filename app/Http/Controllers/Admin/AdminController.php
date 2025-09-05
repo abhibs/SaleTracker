@@ -207,4 +207,23 @@ class AdminController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+
+
+    public function delete($id)
+    {
+
+        $data = Admin::findOrFail($id);
+        $img = $data->image;
+        unlink(public_path('storage/admin/' . $img));
+
+        Admin::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Team Member Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+    }
 }

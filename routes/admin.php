@@ -46,6 +46,7 @@ Route::group(
                         Route::get('/all/team/member', 'allAdmin')->name('all-admin');
                         Route::get('/team/member/inactive/{id}', 'inactive')->name('admin-inactive');
                         Route::get('/team/member/active/{id}', 'active')->name('admin-active');
+                        Route::get('/team/member/delete/{id}', 'delete')->name('admin-delete');
 
                     });
                 });
