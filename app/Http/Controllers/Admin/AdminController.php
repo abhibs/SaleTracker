@@ -183,4 +183,28 @@ class AdminController extends Controller
 
         return view('admin.all_admin', compact('datas'));
     }
+
+
+
+    public function inactive($id)
+    {
+        Admin::findOrFail($id)->update(['status' => 0]);
+        // dd($data);
+        $notification = array(
+            'message' => 'Team Member Inactive Successfully',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function active($id)
+    {
+        Admin::findOrFail($id)->update(['status' => 1]);
+        // dd($data);
+        $notification = array(
+            'message' => 'Team Member Active Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }

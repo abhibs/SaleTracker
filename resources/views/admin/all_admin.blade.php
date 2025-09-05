@@ -33,6 +33,7 @@
                                 <th>Image</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,9 +56,17 @@
                                         @else
                                             <span class="badge rounded-pill bg-grd-danger">InActive</span>
                                         @endif
-
-
                                     </td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                            <a href="{{ route('admin-inactive', $item->id) }}" class="btn btn-grd btn-grd-primary"
+                                                title="Inactive"><i class="fa-solid fa-thumbs-down"></i> </a>
+                                        @else
+                                            <a href="{{ route('admin-active', $item->id) }}" class="btn btn-grd btn-grd-primary"
+                                                title="Active"><i class="fa-solid fa-thumbs-up"></i></a>
+                                        @endif
+                                    </td>
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -72,6 +81,7 @@
                                 <th>Image</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>
