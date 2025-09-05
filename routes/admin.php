@@ -34,6 +34,8 @@ Route::group(
                     Route::group(['middleware' => 'auth:admin'], function () {
                         Route::get('/dashboard', 'dashboard')->name('admin-dashboard');
                         Route::get('/logout',  'adminLogout')->name('admin-logout');
+                        Route::get('/change/password', 'adminChangePassword')->name('admin-change-password');
+
                     });
                 });
             }

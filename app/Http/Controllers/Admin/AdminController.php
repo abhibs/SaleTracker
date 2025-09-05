@@ -51,4 +51,11 @@ class AdminController extends Controller
         );
         return redirect()->route('admin-login')->with($notification);
     }
+
+
+    public function adminChangePassword()
+    {
+        // dd(auth::user());
+        return view('admin.change_password');
+    }
 }
