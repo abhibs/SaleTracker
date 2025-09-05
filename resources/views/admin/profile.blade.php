@@ -68,7 +68,7 @@
                                 <h5 class="mb-0 fw-bold">Edit Profile</h5>
                             </div>
                         </div>
-                        <form class="row g-4" method="post" action=""
+                        <form class="row g-4" method="post" action="{{ route('admin-profile-update') }}"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-12">

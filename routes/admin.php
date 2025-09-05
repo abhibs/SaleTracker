@@ -37,6 +37,7 @@ Route::group(
                         Route::get('/change/password', 'adminChangePassword')->name('admin-change-password');
                         Route::post('/change/password/post', 'adminChangePasswordPost')->name('admin-change-password-post');
                         Route::get('/profile', 'adminProfile')->name('admin-profile');
+                        Route::post('/profile/update', 'adminProfileUpdate')->name('admin-profile-update');
 
                     });
                 });
