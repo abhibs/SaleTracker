@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SalesController;
 use App\Http\Controllers\Admin\UserController;
 
 Route::get('/test', function () {
@@ -52,15 +53,22 @@ Route::group(
                     });
                 });
 
-                    Route::controller(UserController::class)->group(function () {
-                        Route::group(['middleware' => 'auth:admin'], function () {
-                            Route::get('/sale/person/index', 'index')->name('admin-user-index');
-                            Route::get('/sale/person/inactive/{id}', 'inactive')->name('user-inactive');
-                            Route::get('/sale/person/active/{id}', 'active')->name('user-active');
-                            Route::get('/sale/person/delete/{id}', 'delete')->name('user-delete');
+                Route::controller(UserController::class)->group(function () {
+                    Route::group(['middleware' => 'auth:admin'], function () {
+                        Route::get('/sale/person/index', 'index')->name('admin-user-index');
+                        Route::get('/sale/person/inactive/{id}', 'inactive')->name('user-inactive');
+                        Route::get('/sale/person/active/{id}', 'active')->name('user-active');
+                        Route::get('/sale/person/delete/{id}', 'delete')->name('user-delete');
 
-                        });
                     });
+                });
+
+
+                Route::controller(SalesController::class)->group(function () {
+                    Route::group(['middleware' => 'auth:admin'], function () {
+                        Route::get('/sales/index', 'index')->name('admin-sales-index');
+                    });
+                });
 
 
 

@@ -44,6 +44,16 @@
                     </a>
                 </li>
 
+                <li class="menu-label">Sales Data</li>
+
+                <li>
+                    <a href="{{ route('admin-sales-index') }}">
+                        <div class="parent-icon"><i class="material-icons-outlined">join_right</i>
+                        </div>
+                        <div class="menu-title">Sales Data</div>
+                    </a>
+                </li>
+
             </ul>
             <!--end navigation-->
 
