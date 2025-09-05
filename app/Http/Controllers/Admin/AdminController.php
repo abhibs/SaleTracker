@@ -84,4 +84,11 @@ class AdminController extends Controller
         ]);
         return back()->with("status", " Password Changed Successfully");
     }
+
+
+    public function adminProfile(){
+        $user = Auth::guard('admin')->user();
+        // dd($user);
+        return view('admin.profile', compact('user'));
+    }
 }
