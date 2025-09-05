@@ -32,6 +32,7 @@
                                 <th>Password</th>
                                 <th>Image</th>
                                 <th>Date</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,10 +45,19 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->password_hint }}</td>
-                                    <td><a href="{{ asset('/storage/admin/'.$item->image) }}" target="_blank"><img
-                                                src="{{ asset('/storage/admin/' .$item->image) }}" style="width: 70px; height:40px;"></a></td>
+                                    <td><a href="{{ asset('/storage/admin/' . $item->image) }}" target="_blank"><img
+                                                src="{{ asset('/storage/admin/' . $item->image) }}" style="width: 70px; height:40px;"></a></td>
 
                                     <td>{{ $item->created_at->format('M d Y') }}</td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                            <span class="badge rounded-pill bg-grd-primary">Active</span>
+                                        @else
+                                            <span class="badge rounded-pill bg-grd-danger">InActive</span>
+                                        @endif
+
+
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -61,6 +71,7 @@
                                 <th>Password</th>
                                 <th>Image</th>
                                 <th>Date</th>
+                                <th>Status</th>
                             </tr>
                         </tfoot>
                     </table>
