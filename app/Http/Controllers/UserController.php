@@ -82,7 +82,6 @@ class UserController extends Controller
         $user->code = 'panmasala' . $randomNumber;
         $user->password = Hash::make($request->password);
         $user->password_hint = $request->password;
-        $user->status = 'Pending';
         $user->save();
 
         $notification = array(
