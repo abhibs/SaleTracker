@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+
 Route::get('', [UserController::class, 'userLogin'])->name('login');
 Route::get('register', [UserController::class, 'userRegister'])->name('register');
 Route::post('register', [UserController::class, 'userRegisterPost'])->name('user-register-post');;
