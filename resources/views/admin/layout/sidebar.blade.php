@@ -21,8 +21,23 @@
                     </a>
 
                 </li>
-
+                <li class="menu-label">Team Members</li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class="material-icons-outlined">person</i>
+                        </div>
+                        <div class="menu-title">Team</div>
+                    </a>
+                    <ul>
+                        <li><a href="{{ route('admin-add') }}"><i class="material-icons-outlined">arrow_right</i>Add Team</a>
+                        </li>
+                        <li><a href="widgets-static.html"><i class="material-icons-outlined">arrow_right</i>All Team</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!--end navigation-->
+
+
         </div>
     </aside>

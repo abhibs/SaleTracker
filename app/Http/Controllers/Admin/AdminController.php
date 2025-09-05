@@ -135,4 +135,9 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
 
     }
+
+
+    public function addAdmin(){
+        return view('admin.admin_add');
+    }
 }

@@ -39,6 +39,10 @@ Route::group(
                         Route::get('/profile', 'adminProfile')->name('admin-profile');
                         Route::post('/profile/update', 'adminProfileUpdate')->name('admin-profile-update');
 
+
+                        // Team Members
+                        Route::get('/add/team/member', 'addAdmin')->name('admin-add');
+
                     });
                 });
             }
