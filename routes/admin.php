@@ -42,6 +42,8 @@ Route::group(
 
                         // Team Members
                         Route::get('/add/team/member', 'addAdmin')->name('admin-add');
+                        Route::post('/add/team/member/post', 'addAdminPost')->name('admin-add-post');
+                        Route::get('/all/team/member', 'allAdmin')->name('all-admin');
 
                     });
                 });

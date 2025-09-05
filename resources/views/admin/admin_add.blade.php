@@ -26,7 +26,7 @@
                 <hr>
                 <div class="card">
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="{{ route('admin-add-post') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
 
@@ -60,6 +60,17 @@
                             </div>
 
 
+
+                            <div class="mb-3">
+                                <label for="formName" class="form-label">Team Member Address</label>
+                                <textarea class="form-control" id="input11" name="address" placeholder="Enter Your Address" rows="4"
+                                    cols="4"></textarea>
+                                @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+
                             <div class="mb-3">
                                 <label for="formName" class="form-label">Team Member Password</label>
                                 <input class="form-control" type="password" name="password" placeholder="Team Member Password"
@@ -72,6 +83,9 @@
                             <div class="mb-3">
                                 <label for="formName" class="form-label">Team Member Image</label>
                                 <input type="file" class="form-control" name="image" id="image" placeholder="Team Member Image">
+                                @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
 

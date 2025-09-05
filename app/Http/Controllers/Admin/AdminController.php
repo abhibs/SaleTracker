@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use Intervention\Image\Facades\Image;
-
-
-
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class AdminController extends Controller
 {
@@ -139,5 +137,46 @@ class AdminController extends Controller
 
     public function addAdmin(){
         return view('admin.admin_add');
+    }
+
+
+
+    public function addAdminPost(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required'],
+            'phone' => ['required'],
+            'image' => ['required'],
+            'address' => ['required'],
+            'password' => ['required'],
+        ]);
+
+
+        $image = $request->file('image');
+        $name_gen = 'admin' . time() . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(256, 256)->save('storage/admin/' . $name_gen);
+        $save_url = $name_gen;
+
+        $admin = new Admin();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+        $admin->address = $request->address;
+        $admin->password = Hash::make($request->password);
+        $admin->password_hint = $request->password;
+        $admin->image = $save_url;
+        $admin->save();
+
+        $notification = array(
+            'message' => 'New Team Member Inserted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('all-admin')->with($notification);
+    }
+
+    public function allAdmin(){
+        return view('admin.all_admin');
     }
 }
