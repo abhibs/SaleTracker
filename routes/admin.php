@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/test', function () {
     echo "Abhiram";
@@ -50,6 +51,15 @@ Route::group(
 
                     });
                 });
+
+                    Route::controller(UserController::class)->group(function () {
+                        Route::group(['middleware' => 'auth:admin'], function () {
+                            Route::get('/sale/person/index', 'index')->name('admin-user-index');
+                        });
+                    });
+
+
+
             }
         );
 

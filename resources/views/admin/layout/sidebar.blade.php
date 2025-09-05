@@ -35,6 +35,15 @@
                         </li>
                     </ul>
                 </li>
+                <li class="menu-label">Sales Person</li>
+                <li>
+                    <a href="{{ route('admin-user-index') }}">
+                        <div class="parent-icon"><i class="material-icons-outlined">person</i>
+                        </div>
+                        <div class="menu-title">Sales Person</div>
+                    </a>
+                </li>
+
             </ul>
             <!--end navigation-->
 
