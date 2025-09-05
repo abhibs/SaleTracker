@@ -14,9 +14,9 @@
                                     <img src="{{ asset('admin/assets/images/logo1.png') }}" class="mb-4" width="145"
                                         alt="">
                                 </div>
-
                                 <div class="form-body my-4">
-                                    <form class="row g-3" method="POST" action="" enctype="multipart/form-data">
+                                    <form class="row g-3" method="POST" action="{{ route('sale-post') }}"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-3" id="shop-name-section">
                                             <label class="form-label">Shop Name</label>
@@ -25,20 +25,20 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-
-
                                         <div class="mb-3" id="shop-name-section">
                                             <label for="inputSelectCountry" class="form-label">Shop Type</label>
                                             <select class="form-select" id="inputSelectCountry"
-                                                aria-label="Default select example">
-                                                <option selected="">Choose Shop Type</option>
-                                                <option value="1">Wholesale</option>
-                                                <option value="2">Retail</option>
-                                                <option value="3">Distributor</option>
-                                                <option value="3">Hawker</option>
+                                                aria-label="Default select example" name="shop_type">
+                                                <option selected="" disabled>Choose Shop Type</option>
+                                                <option value="Wholesale">Wholesale</option>
+                                                <option value="Retail">Retail</option>
+                                                <option value="Distributor">Distributor</option>
+                                                <option value="Hawker">Hawker</option>
                                             </select>
+                                            @error('shop_type')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-
                                         <div class="mb-3" id="mobile-no-section">
                                             <label class="form-label">Mobile No</label>
                                             <input type="text" class="form-control" name="mobile_no">
@@ -46,43 +46,42 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-
                                         <div class="mb-3" id="owner-name-section">
                                             <label class="form-label">Sale Amount</label>
-                                            <input type="text" class="form-control" name="owner_name">
-                                            @error('owner_name')
+                                            <input type="text" class="form-control" name="sale_amount">
+                                            @error('sale_amount')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-
-
                                         <div class="mb-3" id="owner-name-section">
                                             <label class="form-label">Sales Representative Name</label>
-                                            <input type="text" class="form-control" name="owner_name">
-                                            @error('owner_name')
+                                            <input type="text" class="form-control" name="sale_representative_name">
+                                            @error('sale_representative_name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-
                                         <div class="mb-3">
                                             <label class="form-label">Visit Notes</label>
-                                            <textarea class="form-control"></textarea>
+                                            <textarea class="form-control" name="visit_notes"></textarea>
+                                            @error('visit_notes')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-
-
                                         <div class="mb-3">
                                             <label for="gpsLocation" class="form-label">
                                                 GPS Location
-                                                <span id="locationStatus" class="ms-2"
-                                                    style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#aaa;vertical-align:middle;"></span>
                                             </label>
                                             <div class="d-flex">
                                                 <input type="text" id="gpsLocation" readonly
-                                                    placeholder="Getting location..." class="form-control me-2">
+                                                    placeholder="Getting location..." class="form-control me-2"
+                                                    name="location">
                                                 <button type="button" id="refreshLocationBtn"
                                                     class="btn btn-primary">🔄</button>
                                             </div>
-                                            <small id="locationHelp" class="text-muted d-block mt-2"></small>
+                                            {{-- <small id="locationHelp" class="text-muted d-block mt-2"></small> --}}
+                                            @error('location')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
 
@@ -103,9 +102,6 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-
-
-
 
                                         <div class="col-12" id="submit-section">
                                             <div class="d-grid">
@@ -165,7 +161,7 @@
 
             async function getLocation() {
                 gpsInput.value = "Getting location...";
-                setStatus("#f0ad4e", "Requesting location…"); // amber
+                // setStatus("#f0ad4e", "Requesting location…"); // amber
 
                 if (!("geolocation" in navigator)) {
                     gpsInput.value = "Geolocation not supported";
@@ -184,8 +180,7 @@
                     (pos) => {
                         const lat = pos.coords.latitude.toFixed(6);
                         const lon = pos.coords.longitude.toFixed(6);
-                        gpsInput.value = `Lat: ${lat}, Lon: ${lon}`;
-                        setStatus("#5cb85c", "Location acquired."); // green
+                        gpsInput.value = `${lat},${lon}`;
                     },
                     (err) => {
                         gpsInput.value = "Unable to retrieve location";

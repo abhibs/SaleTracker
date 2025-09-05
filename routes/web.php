@@ -22,5 +22,6 @@ Route::group(
     ['middleware' => 'auth:web'],
     function () {
         Route::get('dashboard', [UserController::class, 'userDashboard'])->name('user-dashboard');
+        Route::post('sales/post', [UserController::class, 'salesPost'])->name('sale-post');
     }
 );

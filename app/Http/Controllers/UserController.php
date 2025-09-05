@@ -96,4 +96,21 @@ class UserController extends Controller
         // dd($user);
         return view('dashboard', compact('user'));
     }
+
+
+
+    public function salesPost(Request $request)
+    {
+        $request->validate([
+            'shop_name' => ['required'],
+            'shop_type' => ['required'],
+            'mobile_no' => ['required'],
+            'sale_amount' => ['required'],
+            'sale_representative_name' => ['required'],
+            'visit_notes' => ['required'],
+            'location' => ['required'],
+            'shop_address' => ['required'],
+            'image' => ['required'],
+        ]);
+    }
 }

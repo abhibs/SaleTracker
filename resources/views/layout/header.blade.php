@@ -4,9 +4,9 @@
 
 <header class="top-header">
     <nav class="navbar navbar-expand align-items-center gap-4" style="left:0 !important">
-        <div class="btn-toggle">
+        {{-- <div class="btn-toggle">
             <a href="javascript:;"><i class="material-icons-outlined">menu</i></a>
-        </div>
+        </div> --}}
         <div class="search-bar flex-grow-1">
             <div class="position-relative">
                 <!-- <input class="form-control rounded-5 px-5 search-control d-lg-block d-none" type="text"
