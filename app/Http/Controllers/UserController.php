@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Sale;
+
 
 
 class UserController extends Controller
@@ -112,5 +114,33 @@ class UserController extends Controller
             'shop_address' => ['required'],
             'image' => ['required'],
         ]);
+
+
+        $image = $request->file('image');
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('storage/sales'), $name_gen);
+        // Get the path to the saved image
+        $save_url = 'storage/sales/' . $name_gen;
+
+
+        $sale = new Sale();
+        $sale->user_id = Auth::id();
+        $sale->shop_name = $request->shop_name;
+        $sale->shop_type = $request->shop_type;
+        $sale->mobile_no = $request->mobile_no;
+        $sale->sale_amount = $request->sale_amount;
+        $sale->sale_representative_name = $request->sale_representative_name;
+        $sale->visit_notes = $request->visit_notes;
+        $sale->location = $request->location;
+        $sale->shop_address = $request->shop_address;
+        $sale->image = $save_url;
+        $sale->save();
+
+        $notification = array(
+            'message' => 'Sales Information Added Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('user-dashboard')->with($notification);
+
     }
 }
