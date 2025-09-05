@@ -31,7 +31,7 @@
                     <ul>
                         <li><a href="{{ route('admin-add') }}"><i class="material-icons-outlined">arrow_right</i>Add Team</a>
                         </li>
-                        <li><a href="widgets-static.html"><i class="material-icons-outlined">arrow_right</i>All Team</a>
+                        <li><a href="{{ route('all-admin') }}"><i class="material-icons-outlined">arrow_right</i>All Team</a>
                         </li>
                     </ul>
                 </li>

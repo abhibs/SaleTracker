@@ -177,6 +177,10 @@ class AdminController extends Controller
     }
 
     public function allAdmin(){
-        return view('admin.all_admin');
+        $datas = Admin::where('id', '!=', 1)
+              ->latest()
+              ->get();
+
+        return view('admin.all_admin', compact('datas'));
     }
 }
