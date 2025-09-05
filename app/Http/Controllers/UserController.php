@@ -33,18 +33,12 @@ class UserController extends Controller
             ]);
         }
 
-        if ($user->status == 'Pending') {
+        if ($user->status == '0') {
             return back()->with([
                 'message' => 'Your Account is Not Approved Yet',
                 'alert-type' => 'error'
             ]);
-        } elseif ($user->status == 'Rejected') {
-            return back()->with([
-                'message' => 'Your Account is Rejected',
-                'alert-type' => 'error'
-            ]);
         }
-
         // Attempt login only if status is "Approved"
         if (Auth::guard('web')->attempt($credentials)) {
             return redirect()->route('user-dashboard')->with([

@@ -25,12 +25,17 @@
                         <thead>
                             <tr>
                                 <th>SL No</th>
+                                <th>Team Member</th>
                                 <th>Code</th>
                                 <th>Name</th>
+                                <th>Email</th>
                                 <th>Phone</th>
+                                <th>Address</th>
+                                <th>Image</th>
                                 <th>Password</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,24 +43,56 @@
                             @foreach ($datas as $key => $item)
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
+                                    <td>{{ $item->admin_id }}</td>
                                     <td>{{ $item->code }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>
+                                        <a href="{{ !empty($item->image) ? asset('storage/user/' . $item->image) : asset('no_image.jpg') }}"
+                                            target="_blank">
+                                            <img src="{{ !empty($item->image) ? asset('storage/user/' . $item->image) : asset('no_image.jpg') }}"
+                                                style="width: 70px; height:40px;">
+                                        </a>
+                                    </td>
+
                                     <td>{{ $item->password_hint }}</td>
                                     <td>{{ $item->created_at->format('M d Y') }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                            <span class="badge rounded-pill bg-grd-primary">Active</span>
+                                        @else
+                                            <span class="badge rounded-pill bg-grd-danger">InActive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                            <a href="{{ route('user-inactive', $item->id) }}" class="btn btn-grd btn-grd-primary" title="Inactive"><i
+                                                    class="fa-solid fa-thumbs-down"></i> </a>
+                                        @else
+                                            <a href="{{ route('user-active', $item->id) }}" class="btn btn-grd btn-grd-primary" title="Active"><i
+                                                    class="fa-solid fa-thumbs-up"></i></a>
+                                        @endif
+                                        <a href="{{ route('user-delete', $item->id) }}" class="btn btn-grd btn-grd-primary px-3" id="delete">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th>SL No</th>
+                                <th>Team Member</th>
                                 <th>Code</th>
                                 <th>Name</th>
+                                <th>Email</th>
                                 <th>Phone</th>
+                                <th>Address</th>
+                                <th>Image</th>
                                 <th>Password</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>

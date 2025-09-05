@@ -55,6 +55,10 @@ Route::group(
                     Route::controller(UserController::class)->group(function () {
                         Route::group(['middleware' => 'auth:admin'], function () {
                             Route::get('/sale/person/index', 'index')->name('admin-user-index');
+                            Route::get('/sale/person/inactive/{id}', 'inactive')->name('user-inactive');
+                            Route::get('/sale/person/active/{id}', 'active')->name('user-active');
+                            Route::get('/sale/person/delete/{id}', 'delete')->name('user-delete');
+
                         });
                     });
 
