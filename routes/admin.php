@@ -35,7 +35,7 @@ Route::group(
                         Route::get('/dashboard', 'dashboard')->name('admin-dashboard');
                         Route::get('/logout',  'adminLogout')->name('admin-logout');
                         Route::get('/change/password', 'adminChangePassword')->name('admin-change-password');
-
+                        Route::post('/change/password/post', 'adminChangePasswordPost')->name('admin-change-password-post');
                     });
                 });
             }
