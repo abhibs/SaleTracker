@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-body">
-                                <form class="row g-3" method="POST" action="">
+                                <form class="row g-3" method="POST" action="{{ route('admin-login-post') }}">
                                     @csrf
                                     <div class="col-12">
                                         <label for="inputEmailAddress" class="form-label">Email</label>
