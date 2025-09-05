@@ -33,7 +33,7 @@ Route::group(
                 Route::post('/login/post', 'loginPost')->name('admin-login-post');
                     Route::group(['middleware' => 'auth:admin'], function () {
                         Route::get('/dashboard', 'dashboard')->name('admin-dashboard');
-
+                        Route::get('/logout',  'adminLogout')->name('admin-logout');
                     });
                 });
             }
