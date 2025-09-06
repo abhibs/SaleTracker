@@ -134,6 +134,18 @@ class UserController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('user-dashboard')->with($notification);
+    }
 
+
+
+
+    public function userLogout()
+    {
+        Auth::logout();
+        $notification = array(
+            'message' => 'User Logout Successfully.',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('login')->with($notification);
     }
 }

@@ -26,6 +26,7 @@ Route::group(
     ['middleware' => 'auth:web'],
     function () {
         Route::get('dashboard', [UserController::class, 'userDashboard'])->name('user-dashboard');
+        Route::get('/logout', [UserController::class, 'userLogout'])->name('user-logout');
         Route::post('sales/post', [UserController::class, 'salesPost'])->name('sale-post');
     }
 );
